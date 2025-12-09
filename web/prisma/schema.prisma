@@ -1,0 +1,92 @@
+datasource db { 
+  provider = "postgresql" 
+  url      = env("DATABASE_URL") 
+} 
+ 
+generator client { 
+  provider = "prisma-client-js" 
+} 
+
+// ============================
+// ENUMS
+// ============================
+
+enum Role {
+  ADMIN
+  USER
+  GUEST
+}
+
+// ============================
+// MODELS
+// ============================
+
+model User { 
+  id        String   @id @default(cuid()) 
+  email     String   @unique 
+  name      String? 
+
+  // ID venant du provider d'auth (ex. Clerk)
+  clerkId   String?  @unique
+
+  // Rôle pour la gestion des permissions
+  role      Role     @default(USER)
+
+  createdAt DateTime @default(now()) 
+  updatedAt DateTime @updatedAt 
+ 
+  orders            Order[] 
+  nutritionProfile  NutritionProfile? 
+} 
+ 
+model Meal { 
+  id          String   @id @default(cuid()) 
+  name        String 
+  description String? 
+  calories    Int? 
+  price       Float 
+  isVegan     Boolean  @default(false) 
+  createdAt   DateTime @default(now()) 
+  updatedAt   DateTime @updatedAt 
+ 
+  orderItems  OrderItem[] 
+} 
+ 
+model Order { 
+  id        String   @id @default(cuid()) 
+  user      User     @relation(fields: [userId], references: [id]) 
+  userId    String 
+  status    String   @default("PENDING") // PENDING, PAID, DELIVERED, CANCELED 
+  total     Float    @default(0) 
+  createdAt DateTime @default(now()) 
+  updatedAt DateTime @updatedAt 
+ 
+  items     OrderItem[] 
+} 
+ 
+model OrderItem { 
+  id        String   @id @default(cuid()) 
+  order     Order    @relation(fields: [orderId], references: [id]) 
+  orderId   String 
+  meal      Meal     @relation(fields: [mealId], references: [id]) 
+  mealId    String 
+  quantity  Int      @default(1) 
+  unitPrice Float 
+  createdAt DateTime @default(now()) 
+} 
+ 
+model NutritionProfile { 
+  id             String   @id @default(cuid()) 
+  user           User     @relation(fields: [userId], references: [id]) 
+  userId         String   @unique 
+ 
+  goal           String?      // perte de poids, prise de masse, maintien 
+  caloriesPerDay Int? 
+  isVegetarian   Boolean  @default(false) 
+  noPork         Boolean  @default(false) 
+  lactoseFree    Boolean  @default(false) 
+  allergies      String?      // texte libre 
+ 
+  createdAt      DateTime @default(now()) 
+  updatedAt      DateTime @updatedAt 
+}

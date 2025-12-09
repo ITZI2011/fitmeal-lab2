@@ -1,65 +1,130 @@
-import Image from "next/image";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <div className="min-h-screen bg-gradient-to-b from-white via-emerald-50/40 to-white flex flex-col">
+      <Navbar />
+
+      {/* Contenu principal */}
+      <main className="flex-1">
+        <section className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-14 md:flex-row md:items-center">
+          {/* Colonne gauche : texte */}
+          <div className="flex-1 space-y-6">
+            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-1 text-sm font-medium text-emerald-700">
+              <span>⚡</span>
+              <span>Nutrition intelligente</span>
+            </div>
+
+            <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 md:text-5xl">
+              Transformez <br />
+              votre <span className="text-emerald-500">alimentation</span>
+            </h1>
+
+            <p className="max-w-xl text-base text-slate-600 md:text-lg">
+              Planifiez vos repas, suivez vos macros et atteignez vos objectifs fitness
+              avec FitMeal. Des milliers de recettes saines à portée de main.
+            </p>
+
+            <div className="flex flex-wrap gap-4">
+              <button className="rounded-xl bg-emerald-500 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-emerald-500/30 hover:bg-emerald-600">
+                Planifier mes repas
+              </button>
+              <button className="rounded-xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-800 hover:border-slate-300">
+                Découvrir les recettes
+              </button>
+            </div>
+
+            <div className="flex items-center gap-2 pt-2 text-sm text-slate-600">
+              <span>✅</span>
+              <span>Plus de 2000 recettes saines</span>
+            </div>
+          </div>
+
+          {/* Colonne droite : cartes stats */}
+          <div className="flex-1">
+            <div className="grid gap-4 md:grid-cols-2">
+              {/* Carte 1 */}
+              <div className="rounded-3xl bg-white p-5 shadow-lg shadow-emerald-100">
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600">
+                  ❤
+                </div>
+                <h3 className="mb-1 text-base font-semibold text-slate-900">
+                  Santé optimale
+                </h3>
+                <p className="text-sm text-slate-600">
+                  Alimentation équilibrée pour votre bien-être.
+                </p>
+              </div>
+
+              {/* Carte 2 */}
+              <div className="rounded-3xl bg-gradient-to-br from-orange-400 to-pink-500 p-5 text-white shadow-lg">
+                <h3 className="text-3xl font-extrabold">500k+</h3>
+                <p className="mt-1 text-sm font-medium">Utilisateurs actifs</p>
+              </div>
+
+              {/* Carte 3 */}
+              <div className="rounded-3xl bg-gradient-to-br from-emerald-500 to-emerald-600 p-5 text-white shadow-lg">
+                <h3 className="text-3xl font-extrabold">2000+</h3>
+                <p className="mt-1 text-sm font-medium">Recettes disponibles</p>
+              </div>
+
+              {/* Carte 4 */}
+              <div className="rounded-3xl bg-white p-5 shadow-lg shadow-emerald-100">
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-2xl bg-orange-50 text-orange-500">
+                  🏆
+                </div>
+                <h3 className="mb-1 text-base font-semibold text-slate-900">
+                  Objectifs atteints
+                </h3>
+                <p className="text-sm text-slate-600">
+                  Résultats mesurables, semaine après semaine.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Bande de stats en bas comme sur ta capture */}
+        <section className="border-y bg-emerald-50/70">
+          <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-6 px-4 py-8">
+            <div className="space-y-1">
+              <p className="flex items-center gap-2 text-sm text-slate-700">
+                <span>✅</span> <span>Plus de 2000 recettes saines</span>
+              </p>
+              <p className="flex items-center gap-2 text-sm text-slate-700">
+                <span>✅</span> <span>Suivi nutritionnel personnalisé</span>
+              </p>
+              <p className="flex items-center gap-2 text-sm text-slate-700">
+                <span>✅</span> <span>Plans de repas sur mesure</span>
+              </p>
+            </div>
+
+            <div className="grid flex-1 grid-cols-2 gap-6 md:grid-cols-4">
+              <Stat number="2000+" label="Recettes" />
+              <Stat number="500k+" label="Utilisateurs" />
+              <Stat number="98%" label="Satisfaction" />
+              <Stat number="4.9★" label="Note moyenne" />
+            </div>
+          </div>
+        </section>
       </main>
+
+      <Footer />
+    </div>
+  );
+}
+
+type StatProps = {
+  number: string;
+  label: string;
+};
+
+function Stat({ number, label }: StatProps) {
+  return (
+    <div className="text-center">
+      <div className="text-2xl font-extrabold text-slate-900">{number}</div>
+      <div className="text-sm text-slate-600">{label}</div>
     </div>
   );
 }
